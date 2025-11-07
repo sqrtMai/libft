@@ -1,0 +1,11 @@
+{
+    "makefile.configureOnOpen": false,
+    "files.associations": {
+        "*.c": "c",
+        "stdio.h": "c",
+        "libft.h": "c",
+        "set": "c",
+        "format": "c",
+        "functional": "c"
+    }
+}
