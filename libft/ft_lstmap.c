@@ -6,7 +6,7 @@
 /*   By: bbouarab <bbouarab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 08:23:10 by bbouarab          #+#    #+#             */
-/*   Updated: 2025/11/07 08:29:44 by bbouarab         ###   ########.fr       */
+/*   Updated: 2025/11/07 11:11:47 by bbouarab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	{
 		new->content = f(temp_old_list->content);
 		new->next = malloc(sizeof(t_list));
-		if (new->next)
+		if (!new->next)
 			return (NULL);
 		temp_old_list = temp_old_list->next;
 		new = new->next;

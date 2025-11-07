@@ -37,7 +37,7 @@ bonus: $(OBJ_BONUS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 so: $(OBJ)
-	$(CC) -shared -fPIC -o libft.so $(OBJ)
+	$(CC) -shared -fPIC -o libft.so $(OBJ) $(OBJ_BONUS)
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_BONUS)
