@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbouarab <bbouarab@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mai <mai@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 08:23:10 by bbouarab          #+#    #+#             */
-/*   Updated: 2025/11/07 11:11:47 by bbouarab         ###   ########.fr       */
+/*   Updated: 2025/11/11 16:08:06 by mai              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*temp_old_list;
 	t_list	*new_head;
 	t_list	*new;
 
+	if (!lst || !f)
+		return (NULL);
 	new = malloc(sizeof(t_list));
 	if (!new)
 	{
@@ -25,17 +26,16 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		return (NULL);
 	}
 	new_head = new;
-	temp_old_list = lst;
-	while (temp_old_list->next != NULL)
+	while (lst->next != NULL)
 	{
-		new->content = f(temp_old_list->content);
+		new->content = f(lst->content);
 		new->next = malloc(sizeof(t_list));
 		if (!new->next)
 			return (NULL);
-		temp_old_list = temp_old_list->next;
+		lst = lst->next;
 		new = new->next;
 	}
-	new->content = f(temp_old_list->content);
+	new->content = f(lst->content);
 	new->next = NULL;
 	return (new_head);
 }

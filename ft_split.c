@@ -65,6 +65,8 @@ char	**ft_split(char const *s, char c)
 	int		i;
 	char	**split;
 
+	if (!s)
+		return (NULL);
 	word_count = count_words(s, c);
 	actual_word = 0;
 	i = 0;
@@ -82,6 +84,5 @@ char	**ft_split(char const *s, char c)
 			i++;
 		}
 	}
-	split[actual_word] = NULL;
-	return (split);
+	return (split[actual_word] = NULL, split);
 }
