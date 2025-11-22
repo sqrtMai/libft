@@ -12,12 +12,27 @@
 
 #include "libft.h"
 
-int	is_sep(char c, char sep)
+static void	free_everything(char **split, int actual_word)
+{
+	int	i;
+
+	i = 0;
+	while (i < actual_word)
+	{
+		free(split[i]);
+		i++;
+	}
+	if (i == 0)
+		free(split[i]);
+	free (split);
+}
+
+static int	is_sep(char c, char sep)
 {
 	return (c == sep);
 }
 
-int	count_words(char const *s, char c)
+static int	count_words(char const *s, char c)
 {
 	size_t	word_count;
 	int		i;
@@ -36,7 +51,7 @@ int	count_words(char const *s, char c)
 	return (word_count);
 }
 
-char	*copy(const char *s, char c)
+static char	*copy(const char *s, char c)
 {
 	size_t	letter;
 	int		i;
@@ -78,11 +93,11 @@ char	**ft_split(char const *s, char c)
 		while (s[i] && is_sep(s[i], c))
 			i++;
 		split[actual_word] = copy(&s[i], c);
+		if (!split[actual_word])
+			return (free_everything(*&split, actual_word), NULL);
 		actual_word++;
 		while (s[i] && !is_sep(s[i], c))
-		{
 			i++;
-		}
 	}
 	return (split[actual_word] = NULL, split);
 }

@@ -1,7 +1,7 @@
 NAME = libft.a
 NAME_BONUS = libft.a
 CC = gcc
-CFLAGS =  -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
 AR = ar rcs
 RM = rm -f
@@ -30,14 +30,11 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
 
-bonus: $(OBJ_BONUS)
-	@$(AR) $(NAME) $(OBJ_BONUS)
+bonus: $(OBJ) $(OBJ_BONUS)
+	@$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-so: $(OBJ)
-	$(CC) -shared -fPIC -o libft.so $(OBJ) $(OBJ_BONUS)
 
 clean:
 	@$(RM) $(OBJ) $(OBJ_BONUS)
