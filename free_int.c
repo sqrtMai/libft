@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   free_int.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mai <mai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bbouarab <bbouarab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 08:20:22 by bbouarab          #+#    #+#             */
-/*   Updated: 2025/11/11 16:07:01 by mai              ###   ########.fr       */
+/*   Created: 2025/11/07 08:08:05 by bbouarab          #+#    #+#             */
+/*   Updated: 2025/12/12 11:09:01 by bbouarab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	free_everything_int(int **vector)
 {
-	t_list	*temp;
+	int	i;
 
-	if (!lst || !f)
-		return ;
-	temp = lst;
-	while (temp->next != NULL)
-	{
-		f(temp->content);
-		temp = temp->next;
-	}
-	f(temp->content);
+	i = sizeof(vector) / **vector;
+	while (vector[i])
+		free(vector[i++]);
+	if (vector)
+		free(vector);
 }

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_findstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mai <mai@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: bbouarab <bbouarab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 08:20:03 by bbouarab          #+#    #+#             */
-/*   Updated: 2025/11/11 16:03:14 by mai              ###   ########.fr       */
+/*   Created: 2025/12/10 14:32:33 by bbouarab          #+#    #+#             */
+/*   Updated: 2025/12/12 10:42:55 by bbouarab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+int	ft_findstr(char *str, char *searched)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	int	i;
+
+	if (!str || !searched)
+		return (1);
+	i = 0;
+	while (str[i] && searched[i])
+	{
+		if (str[i] != searched[i])
+			return (1);
+		i++;
+	}
+	if (str[i] == searched[i] || searched[i] == '\n')
+		return (0);
+	return (1);
 }

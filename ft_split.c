@@ -12,21 +12,6 @@
 
 #include "libft.h"
 
-static void	free_everything(char **split, int actual_word)
-{
-	int	i;
-
-	i = 0;
-	while (i < actual_word)
-	{
-		free(split[i]);
-		i++;
-	}
-	if (i == 0)
-		free(split[i]);
-	free (split);
-}
-
 static int	is_sep(char c, char sep)
 {
 	return (c == sep);
@@ -94,7 +79,7 @@ char	**ft_split(char const *s, char c)
 			i++;
 		split[actual_word] = copy(&s[i], c);
 		if (!split[actual_word])
-			return (free_everything(*&split, actual_word), NULL);
+			return (free_everything((void **)split), NULL);
 		actual_word++;
 		while (s[i] && !is_sep(s[i], c))
 			i++;

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   free_char.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbouarab <bbouarab@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 08:18:41 by bbouarab          #+#    #+#             */
-/*   Updated: 2025/11/13 10:55:30 by bbouarab         ###   ########.fr       */
+/*   Created: 2025/11/07 08:08:05 by bbouarab          #+#    #+#             */
+/*   Updated: 2025/12/12 11:09:14 by bbouarab         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	free_everything(void **vector)
 {
-	t_list	*temp;
-	t_list	*real_temp;
+	int	i;
 
-	if (!lst || !(*lst) || !del)
-		return ;
-	temp = *lst;
-	while (temp->next != NULL)
-	{
-		real_temp = temp->next;
-		del(temp->content);
-		free(temp);
-		temp = real_temp;
-	}
-	del(temp->content);
-	free(temp);
-	*lst = NULL;
+	i = 0;
+	while (vector[i])
+		free(vector[i++]);
+	if (vector)
+		free(vector);
 }

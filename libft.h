@@ -56,6 +56,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+void	free_everything_int(int **vector);
+void	free_everything(void **vector);
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);

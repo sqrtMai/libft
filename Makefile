@@ -13,15 +13,11 @@ SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
       ft_atoi.c ft_calloc.c ft_strdup.c \
       ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
       ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
-      ft_putendl_fd.c ft_putnbr_fd.c \
-
-SRC_BONUS = ft_lstadd_back.c  ft_lstadd_front.c  ft_lstclear.c \
-	ft_lstdelone.c  ft_lstiter.c  ft_lstlast.c \
-	ft_lstmap.c  ft_lstnew.c  ft_lstsize.c \
+      ft_putendl_fd.c ft_putnbr_fd.c ft_lstadd_back.c  ft_lstadd_front.c \
+	  ft_lstlast.c ft_findstr.c free_char.c free_int.c \
+	  ft_lstnew.c  ft_lstsize.c \
 
 OBJ = $(SRC:.c=.o)
-
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 HEADER = libft.h
 
@@ -29,18 +25,23 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
-
-bonus: $(OBJ) $(OBJ_BONUS)
-	@$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
+	make -C ./ft_printf
+	make -C ./get_next_line
+	cp ft_printf/libftprintf.a $(NAME)
+	cp get_next_line/libgnl.a $(NAME)
 
 %.o: %.c $(HEADER)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@$(RM) $(OBJ)
+	make -C ft_printf clean
+	make -C get_next_line clean
 
 fclean: clean
 	@$(RM) $(NAME) $(NAME)
+	make -C ft_printf fclean
+	make -C get_next_line fclean
 
 re: fclean all
 
